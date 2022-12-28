@@ -7,10 +7,10 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="Lachesis">
-                <param name="android-package" value="cordova-plugin-lachesis.Lachesis" />
+                <param name="android-package" value="com.wagner.lachesis.Lachesis" />
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
-        <source-file src="src/android/com/wagner/lachesis/Lachesis.java" target-dir="src/cordova-plugin-lachesis/Lachesis" />
+        <source-file src="src/android/com/wagner/lachesis/Lachesis.java" target-dir="src/com/wagner/lachesis/" />
     </platform>
 </plugin>
