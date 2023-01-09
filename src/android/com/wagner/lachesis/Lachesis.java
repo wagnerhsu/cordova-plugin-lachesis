@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 import android.widget.Toast;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -37,6 +38,7 @@ public class Lachesis extends CordovaPlugin {
      * 停止接收广播
      */
     private void stopBarcodeBroadcastReceiver() {
+        Log.d(TAG,"stopBarcodeBroadcastReceiver")
         if (valueBroadcastReceiver != null) {
             this.cordova.getActivity().unregisterReceiver(valueBroadcastReceiver);
             valueBroadcastReceiver = null;
@@ -50,11 +52,10 @@ public class Lachesis extends CordovaPlugin {
         if (valueBroadcastReceiver == null) {
             valueBroadcastReceiver = new ValueBroadcastReceiver();
         }
+        Log.d(TAG,"startBarcodeBroadcastReceiver");
         Intent intent = new Intent("lachesis_barcode_value_notice_broadcast");
-        intent.putExtra("lachesis_barcode_value_notice_broadcast_data_string","12345");
         this.cordova.getActivity().registerReceiver(valueBroadcastReceiver, new IntentFilter(
                 "lachesis_barcode_value_notice_broadcast"));
-        //this.cordova.getActivity().sendBroadcast(intent);
     }
 
     /**
@@ -73,7 +74,7 @@ public class Lachesis extends CordovaPlugin {
                 throw new RuntimeException(e);
             }
             callbackContext.success(obj);
-            //Toast.makeText(context, "Scanned:"+ value, Toast.LENGTH_LONG).show();
+            Log.i(TAG,"scanned text:"+value);
             stopBarcodeBroadcastReceiver();
         }
     }
